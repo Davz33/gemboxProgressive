@@ -1,12 +1,15 @@
-Package: gembox
+Package: gemboxProgressive
 Type: Package
-Title: In-house toolbox for genome-scale metabolic modeling (GEM) for the Ruppin Lab
-Version: 0.1.0
-Author: Kuoyuan Cheng
-Maintainer: Kuoyuan Cheng <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: LazyEval, parallel and 'start and stop' for github.com/ruppinlab/gembox. Gembox is a In-house toolbox for genome-scale metabolic modeling (GEM) for the Ruppin Lab
+Version: 0.2.1
+Author: 
+  Davide Vitiello
+  Kuoyuan Cheng
+Maintainer: 
+  Davide Vitiello <me@davidevitiello.com>
+  Kuoyuan Cheng <yourself@somewhere.net>
+Description: genome-scale metabolic modeling
+License: Open-Source and extendable (MIT) for no-profit applications, commercial otherwise
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -15,7 +18,9 @@ Depends:
 Imports:
     stringr,
     parallel,
-    pbmcapply
+    pbmcapply,
+    future,
+    Rcpp
 LinkingTo:
     Rcpp,
     RcppArmadillo
@@ -34,3 +39,4 @@ Suggests:
     hyperdraw,
     Rfast
 SystemRequirements: C++11
+RoxygenNote: 7.2.1
