@@ -45,7 +45,7 @@ get.opt.fluxes <- function(model, rxns="all", coefs=1, dir="max", nc=1L, solv.pa
   } else {
     stop("If `rxns` is provided as a list, `coefs` should be a matched list as well.")
   }
-  
+
   res <- unlist(pbmcapply::pbmclapply(1:length(rxns), function(i) get.opt.flux(model=model, rxns=rxns[[i]], coefs=coefs[[i]], dir=dir, solv.pars=solv.pars), mc.cores=nc))
   names(res) <- names(rxns)
   res
@@ -112,7 +112,7 @@ fva1 <- function(model, rxns="all", coefs=1, nc=1L, gap=NULL, agap=NULL, keep.so
 
 get.essential.rxns <- function(model, bm.lb.rel=0.1, nc=1L, bm.rgx="biomass", solv.pars=get.pars("lp", list())) {
   # get the indices of essential reactions: those whose KO reduces biomass by > 1-bm.lb.rel (i.e. biomass_KO < biomass_WT * bm.lb.rel)
-  
+
   bm0 <- get.opt.flux(model, bm.rgx, solv.pars=solv.pars)
   bms <- unlist(parallel::mclapply(1:length(model$rxns), function(i) get.opt.flux(model, bm.rgx, ko=i, solv.pars=solv.pars), mc.cores=nc))
   ess.idx <- which(bms<bm.lb.rel*bm0)
@@ -167,5 +167,4 @@ run.ko.screen <- function(model, rxns="all+ctrl", f, ..., nc=1L, simplify=TRUE) 
   }
   res
 }
-
 

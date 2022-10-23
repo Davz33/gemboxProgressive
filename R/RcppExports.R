@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 achr <- function(model, state, warmupPnts, nPnts, stepsPerPnt) {
-    .Call('_gembox_achr', PACKAGE = 'gembox', model, state, warmupPnts, nPnts, stepsPerPnt)
+    .Call('_gemboxProgressive_achr', PACKAGE = 'gemboxProgressive', model, state, warmupPnts, nPnts, stepsPerPnt)
 }
 
 mepc <- function(model, beta, damp, maxIter, dlb, dub, epsil, ff, fIdx, fMeans, fVars) {
-    .Call('_gembox_mepc', PACKAGE = 'gembox', model, beta, damp, maxIter, dlb, dub, epsil, ff, fIdx, fMeans, fVars)
+    .Call('_gemboxProgressive_mepc', PACKAGE = 'gemboxProgressive', model, beta, damp, maxIter, dlb, dub, epsil, ff, fIdx, fMeans, fVars)
 }
 

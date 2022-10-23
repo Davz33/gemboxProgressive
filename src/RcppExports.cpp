@@ -6,9 +6,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // achr
 Rcpp::List achr(const Rcpp::List& model, const Rcpp::List& state, const arma::mat& warmupPnts, const int nPnts, const int stepsPerPnt);
-RcppExport SEXP _gembox_achr(SEXP modelSEXP, SEXP stateSEXP, SEXP warmupPntsSEXP, SEXP nPntsSEXP, SEXP stepsPerPntSEXP) {
+RcppExport SEXP _gemboxProgressive_achr(SEXP modelSEXP, SEXP stateSEXP, SEXP warmupPntsSEXP, SEXP nPntsSEXP, SEXP stepsPerPntSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,7 +28,7 @@ END_RCPP
 }
 // mepc
 Rcpp::List mepc(const Rcpp::List& model, const double beta, const double damp, const unsigned int maxIter, const double dlb, const double dub, const double epsil, const bool ff, const unsigned int fIdx, double fMeans, double fVars);
-RcppExport SEXP _gembox_mepc(SEXP modelSEXP, SEXP betaSEXP, SEXP dampSEXP, SEXP maxIterSEXP, SEXP dlbSEXP, SEXP dubSEXP, SEXP epsilSEXP, SEXP ffSEXP, SEXP fIdxSEXP, SEXP fMeansSEXP, SEXP fVarsSEXP) {
+RcppExport SEXP _gemboxProgressive_mepc(SEXP modelSEXP, SEXP betaSEXP, SEXP dampSEXP, SEXP maxIterSEXP, SEXP dlbSEXP, SEXP dubSEXP, SEXP epsilSEXP, SEXP ffSEXP, SEXP fIdxSEXP, SEXP fMeansSEXP, SEXP fVarsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,12 +49,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_gembox_achr", (DL_FUNC) &_gembox_achr, 5},
-    {"_gembox_mepc", (DL_FUNC) &_gembox_mepc, 11},
+    {"_gemboxProgressive_achr", (DL_FUNC) &_gemboxProgressive_achr, 5},
+    {"_gemboxProgressive_mepc", (DL_FUNC) &_gemboxProgressive_mepc, 11},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_gembox(DllInfo *dll) {
+RcppExport void R_init_gemboxProgressive(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

@@ -8,3 +8,4 @@ src/*.dll
 cache
 *.DS_Store
 
+R/utils.R
